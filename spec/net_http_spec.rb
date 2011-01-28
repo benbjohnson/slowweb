@@ -44,4 +44,13 @@ describe Net::HTTP do
     open('http://github.com')
     (Time.now-t).should > 1
   end
+
+  it 'should ignore unlimited hosts' do
+    FakeWeb.register_uri(:get, 'http://google.com', :body => 'bar')
+    SlowWeb.limit('github.com', 3, 60)
+    open('http://google.com')
+    open('http://google.com')
+    open('http://google.com')
+    open('http://google.com')
+  end
 end
