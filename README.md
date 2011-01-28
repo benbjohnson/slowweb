@@ -1,5 +1,5 @@
-Slow Web - A Request Governor
-=============================
+Slow Web - An HTTP Request Governor
+===================================
 
 ## DESCRIPTION
 
@@ -22,10 +22,10 @@ To install Slow Web, simply install the gem:
 And specify the domain to limit.
 
 	require 'slowweb'
-	SlowWeb.limit('github.com', 60, 3600)
+	SlowWeb.limit('github.com', 10, 60)
 
-This restricts the `github.com` domain to only allowing `60` requests every
-`3600` seconds (or one hour).
+This restricts the `github.com` domain to only allowing `10` requests every
+`60` seconds (or one minute).
 
 
 ## CONTRIBUTE
