@@ -26,7 +26,7 @@ And specify the domain to limit.
 	SlowWeb.limit('github.com', 10, 60)
 
 This restricts the `github.com` domain to only allowing `10` requests every
-`60` seconds (or one minute).
+`60` seconds.
 
 
 ## CONTRIBUTE
