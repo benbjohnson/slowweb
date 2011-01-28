@@ -4,7 +4,8 @@ Slow Web - An HTTP Request Governor
 ## DESCRIPTION
 
 Slow Web is a way to limit the number of requests to a domain within a certain
-period of time.
+period of time. It is inspired by Chris Kampmeier's
+[FakeWeb](https://github.com/chrisk/fakeweb).
 
 For example, the GitHub API only allows for 60 requests per minute. Slow Web can
 monitor the number of calls to that domain and will sleep on the next request
