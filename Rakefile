@@ -13,19 +13,6 @@ require 'slowweb'
 #
 #############################################################################
 
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-end
-
-Rake::RDocTask.new do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "SlowWeb #{SlowWeb::VERSION}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
-
 task :console do
   sh "irb -rubygems -r ./lib/slowweb.rb"
 end
