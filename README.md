@@ -23,10 +23,36 @@ To install Slow Web, simply install the gem:
 And specify the domain to limit.
 
 	require 'slowweb'
-	SlowWeb.limit('github.com', 10, 60)
+	SlowWeb.limit('example.com', 10, 60)
 
-This restricts the `github.com` domain to only allowing `10` requests every
+This restricts the `example.com` domain to only allowing `10` requests every
 `60` seconds.
+
+
+## EXAMPLE
+
+Because SlowWeb attaches to the low-level Net::HTTP class, all API gems should
+work. For example, you can use the [Octopi](https://github.com/fcoury/octopi)
+API to access GitHub information and use SlowWeb to restrict calls
+automatically.
+
+	require 'slowweb'
+	SlowWeb.limit('github.com', 60, 60)  # 60 requests per minute
+	
+	# Use up all the API requests for this minute
+	60.times do |i|
+	  tpw = Octopi::User.find('mojombo')
+	end
+	
+	# This request will wait until a minute after the first request was sent
+	wanstrath = Octopi::User.find('defunkt')
+
+This code will retrieve user information on
+[Tom Preston-Warner (mojombo)](https://github.com/mojombo) sixty times and then
+attempts to access user information for
+[Chris Wanstrath (defunkt)](https://github.com/defunkt). However when the API
+call is made to view `defunkt`, SlowWeb will cause your application sleep until
+a minute has passed since your first request to mojombo.
 
 
 ## CONTRIBUTE
