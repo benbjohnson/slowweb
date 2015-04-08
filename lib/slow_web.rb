@@ -23,10 +23,10 @@ class SlowWeb
   # @param [Fixnum] period  the number of seconds in the time period.
   #
   # @return [SlowWeb::Limit] the limit object.
-  def self.limit(host, count, period)
+  def self.limit(host, count, period, margin = 0)
     raise "Limit already exists for this host: #{host}" if @limits[host]
     
-    limit = Limit.new(host, count, period)
+    limit = Limit.new(host, count, period, margin)
     @limits[host] = limit
     return limit
   end
