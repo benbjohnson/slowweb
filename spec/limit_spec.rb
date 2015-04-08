@@ -37,4 +37,18 @@ describe SlowWeb::Limit do
     @limit.add_request({})
     @limit.should_not be_exceeded
   end
+
+  context 'provided margin between requests' do
+    before do
+      @limit = SlowWeb::Limit.new('github.com', 3, 60, 1)
+    end
+
+    it 'should be exceeded if next request overlap margin' do
+      @limit.add_request({})
+      @limit.add_request({})
+      @limit.should be_exceeded
+      sleep(1)
+      @limit.should_not be_exceeded
+    end
+  end
 end

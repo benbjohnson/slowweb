@@ -54,6 +54,17 @@ attempts to access user information for
 call is made to view `defunkt`, SlowWeb will cause your application sleep until
 a minute has passed since your first request to mojombo.
 
+You can specify margin between requests
+
+    require 'slowweb'
+
+    # 10 requests per minute and wait 5 seconds between requests
+    SlowWeb.limit('google.com', 10, 60, 5)
+
+    # 60 requests per minute and wait 2 seconds between requests
+    # 60/2 = 30 requests is maximum that will be processed
+    # so you may want to choose more reasonable limit number of requests
+    SlowWeb.limit('github.com', 60, 60, 2)
 
 ## CONTRIBUTE
 
